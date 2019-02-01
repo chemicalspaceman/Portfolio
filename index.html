@@ -14,9 +14,38 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
 <body class="w3-blue-grey">
 
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-grey w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#webdev" class="w3-bar-item w3-button w3-padding-large w3-hide-small">WEBDEV</a>
+    <a href="#gamedev" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GAMEDEV</a>
+    <a href="#math" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MATHS</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="MSW/index.html" class="w3-bar-item w3-button">Weather and Wave Data Visualiser</a>
+        <a href="pdfs/TP_EJAM_final.pdf" class="w3-bar-item w3-button">Circle Maps with Gaps</a>
+        <a href="http://www.xsquaredgames.co.uk" class="w3-bar-item w3-button">xsquaredgames.co.uk</a>
+      </div>
+    </div>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#webdev" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">WEBDEV</a>
+  <a href="#gamedev" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">GAMEDEV</a>
+  <a href="#math" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MATHS</a>
+</div>
+
+
+
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
-
+<br><br>
   <!-- The Grid -->
   <div class="w3-row-padding">
   
@@ -35,7 +64,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-light-blue"></i>Plymouth, UK</p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-light-blue"></i>matt1883@hotmail.co.uk</p>
           <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-light-blue"></i>07852 362 452</p>
-          <p><i class="fa fa-file-text fa-fw w3-margin-right w3-large w3-text-light-blue"></i><a href = "http://www.xsquaredgames.co.uk">xsquaredgames.co.uk</a></p>
+          <p><i class="fa fa-superscript fa-fw w3-margin-right w3-large w3-text-light-blue"></i><a href = "http://www.xsquaredgames.co.uk">xsquaredgames.co.uk</a></p>
           <hr>
 
           <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-light-blue"></i>Languages</b></p>
@@ -51,7 +80,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
           <p>HTML</p>
           <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-light-blue" style="width:35%">35%</div>
+            <div class="w3-container w3-center w3-round-xlarge w3-light-blue" style="width:45%">45%</div>
           </div>
           <p>C++</p>
           <div class="w3-light-grey w3-round-xlarge w3-small">
@@ -71,20 +100,35 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
           <br>
 
-          <!--
-          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-light-blue"></i>Languages</b></p>
-          <p>English</p>
-          <div class="w3-light-grey w3-round-xlarge">
-            <div class="w3-round-xlarge w3-light-blue" style="height:24px;width:100%"></div>
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-list-ul fa-fw w3-margin-right w3-text-light-blue"></i>Software</b></p>
+          <p>LATEX</p>
+          <div class="w3-light-grey w3-round-xlarge w3-small">
+            <div class="w3-container w3-center w3-round-xlarge w3-light-blue" style="width:100%">100%</div>
           </div>
-          <p>Spanish</p>
-          <div class="w3-light-grey w3-round-xlarge">
-            <div class="w3-round-xlarge w3-light-blue" style="height:24px;width:55%"></div>
+          
+          <p>Microsoft Office</p>
+          <div class="w3-light-grey w3-round-xlarge w3-small">
+            <div class="w3-container w3-center w3-round-xlarge w3-light-blue" style="width:90%">90%</div>
           </div>
-          <p>German</p>
-          <div class="w3-light-grey w3-round-xlarge">
-            <div class="w3-round-xlarge w3-light-blue" style="height:24px;width:25%"></div>
-          </div>-->
+
+          <p>Photoshop</p>
+          <div class="w3-light-grey w3-round-xlarge w3-small">
+            <div class="w3-container w3-center w3-round-xlarge w3-light-blue" style="width:75%">75%</div>
+          </div>
+          
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-list-ul fa-fw w3-margin-right w3-text-light-blue"></i>Technical Skills</b></p>
+          <p>
+            <ul>
+              <li> Project management 
+              <li> Quantitative research 
+              <li> Data analysis 
+              <li> Mathematical modelling 
+              <li> Interdisiplinary collaboration 
+              <li> Critical thinking 
+              <li> Problem solving 
+              <li> Self direction
+            </ul>
+          </p>
           <br>
         </div>
       </div><br>
@@ -164,7 +208,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   <!-- End Page Container -->
 </div>
 
-  <section>
+  <section id = "webdev">
     <h1 class = "w3-center w3-text-white">Web Development</h1>
     <div class="wrapper">
       <h2 class="w3-opacity w3-center w3-text-black">xSquared Games</h2>
@@ -181,8 +225,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <iframe src="MSW/index.html" frameborder="2"></iframe>
       </div>
     </div>
-
     <br>
+
+  </section>
+  <section id = "gamedev">
     <h1 class = "w3-center w3-text-white">Game Development</h1>
     <div class="wrapper w3-text-grey">
       <p align = "center">
@@ -214,7 +260,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
       </p>
     </div>
     <br>
-
+    </section>
+    <section id ="math">
       <h1 class = "w3-center w3-text-white">Mathematical Modelling</h1>
         <div class="wrapper">
           <h2 class="w3-opacity w3-center w3-text-black">The Two Process Model</h2>
@@ -250,9 +297,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </body>
 
 <script type="text/javascript">
+
   function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
 }
 
 </script>
