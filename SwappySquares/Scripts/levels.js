@@ -50,19 +50,28 @@ var level6 = [
  	["black","black","black","black","black"]
 ];
 
-//20
 var level7 = [
+	["black","black","black","black","black"],
+ 	["black","black","gold","black","black"],
+ 	["black","black","red","black","black"],
+ 	["black","black","player","black","black"],
+ 	["black","black","darkgreen","black","black"],
+ 	["black","black","black","black","black"]
+];
+
+//20
+var level8 = [
 	["black","black","black","black","black","black","black"],
- 	["black","black","blue","black","black","black","black"],
- 	["black","black","darkgreen","green","black","black","black"],
- 	["black","player","blue","black","black","black","black"],
- 	["black","black","darkred","blue","blue","gold","black"],
+ 	["black","black","green","black","black","black","black"],
+ 	["black","black","darkred","red","black","black","black"],
+ 	["black","player","green","black","black","black","black"],
+ 	["black","black","darkblue","green","green","gold","black"],
  	["black","black","black","black","black","black","black"]
 ];
 
 
 var levels = new Array();
 
-levels = [level1,level2,level3,level4,level5,level6,level7];
+levels = [level1,level2,level3,level4,level5,level6,level7,level8];
 console.log(levels);
 
