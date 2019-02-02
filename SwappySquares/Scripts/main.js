@@ -170,6 +170,11 @@
         ctx.strokeStyle = 'black';
         ctx.lineWidth = '5';
         ctx.strokeRect(topLeftx+boxSize, topLefty+boxSize, squareSize-2*boxSize, squareSize-2*boxSize);
+        
+        //Draw any text on level
+        drawText();
+
+
         //Draw Player in centre and find offset values.
         ctx.fillStyle = player_colour;
         for(var i = 0; i<levelRows; i++){
@@ -229,6 +234,32 @@
         //Movement logic
         if(isKeyDown) movementLogic();
         window.requestAnimationFrame(draw); //this is apparently smoother than setInterval, not sure why
+    }
+
+    function drawText(){
+
+
+
+        ctx.textAlign="center"; 
+        ctx.textBaseline = "bottom";
+        ctx.fillStyle = 'black';
+        ctx.font = "14px Arial";
+        if(levelCount == 1){
+            ctx.fillText("There are 3 swappy colours: Red, Green & Blue", topLeftx+5.5*boxSize, topLefty+2*boxSize);
+            ctx.fillText("You can only move through squares that are the same colour as you!", topLeftx+5.5*boxSize, topLefty+2.5*boxSize);
+        }
+        else{
+            ctx.fillStyle = player_colour;
+            ctx.fillText("Press R to RESTART the level", topLeftx+5.5*boxSize, topLefty+10.5*boxSize);
+        }   
+
+        if(levelCount ==2){
+            ctx.fillStyle = 'black';
+            ctx.fillText("Try swapping the RED and BLUE squares!", topLeftx+5.5*boxSize, topLefty+2*boxSize);
+            //ctx.fillText("You can only move through squares that are the same colour as you!", topLeftx+5.5*boxSize, topLefty+2.5*boxSize);
+        }
+
+        
     }
 
     function movementLogic(){
@@ -313,15 +344,15 @@
     }
 
     function swapColour(x1,y1,x2,y2,col1,col2){
-        if(col1 !== "red" && col2 !== "red"){
+        if(col1 !== "red" && col2 !== "red" && col2 !== col1){
                 level[x1][y1] = "red";
                 level[x2][y2] = "red";
         }
-        if(col1 !== "blue" && col2 !== "blue"){
+        if(col1 !== "blue" && col2 !== "blue" && col2 !== col1){
                 level[x1][y1] = "blue";
                 level[x2][y2] = "blue";
         }
-        if(col1 !== "green" && col2 !== "green"){
+        if(col1 !== "green" && col2 !== "green" && col2 !== col1){
                 level[x1][y1] = "green";
                 level[x2][y2] = "green";
         }
