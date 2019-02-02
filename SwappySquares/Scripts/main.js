@@ -14,7 +14,7 @@
     var topLefty;
     var boxNo = 11;
     var boxSize;
-    var levelCount = 1;
+    var levelCount = 6;
     var loader = 0;
     var player;
     var playeri; //i is rows
@@ -23,6 +23,7 @@
     var levelCols;
     var level = new Array();
     var player_colour = 'red';
+    var startColour = player_colour;
     var moveCount = 0;
     //vars for selecting and swapping the boxes by clicking
     var boxDrawPositions = []; //positions where the boxes are drawn
@@ -124,7 +125,7 @@
     }
     
     function level_check(){
-        
+        startColour = player_colour;
         level = levels[levelCount-1].map(x => x.slice()); //apparently slice is not enough for arrays of arrays
        
         levelRows = level.length;
@@ -136,6 +137,11 @@
         levelCount++;
         loader = 0;
         moveCount = 0;
+
+        //No clicks get carried over
+        selectedBoxi = "none";
+        selectedBoxj = "none";
+                            
         //Maybe add some graphics here
     }   
                 
@@ -201,19 +207,27 @@
                 var position_x = topLeftx+(j-offsetj)*boxSize;
                 var position_y = topLefty+(i-offseti)*boxSize;
 
-                //Draw boxes
+            
                 if(position_x>=topLeftx+boxSize && position_x<topLeftx+10*boxSize && position_y>=topLefty+boxSize && position_y<topLefty+10*boxSize){
+                    //DRAW ALL SQUARES INSIDE GAMEBOARD WITH A BLACK OUTLINE
                     ctx.fillRect(position_x, position_y, boxSize, boxSize); 
                     ctx.strokeStyle = 'black';
                     ctx.lineWidth = '5';
                     ctx.strokeRect(position_x, position_y, boxSize, boxSize);
 
+                    //writting on gold box
                     if (level[i][j] == "gold"){
                         ctx.fillStyle = 'black';
                         ctx.textAlign="center"; 
                         ctx.textBaseline = "middle";
                         ctx.font = "15px Arial";
                         ctx.fillText("GOAL", position_x+0.5*boxSize, position_y+0.5*boxSize);
+                    }
+
+                    if (["darkred","darkgreen","darkblue"].includes(level[i][j])){
+                
+                        ctx.fillStyle = level[i][j].replace('dark', '');
+                        ctx.fillRect(position_x + 0.25*boxSize, position_y + 0.25*boxSize, 0.5*boxSize, 0.5*boxSize); 
                     }
                 }
                 
@@ -247,6 +261,7 @@
         if(levelCount == 1){
             ctx.fillText("There are 3 swappy colours: Red, Green & Blue", topLeftx+5.5*boxSize, topLefty+2*boxSize);
             ctx.fillText("You can only move through squares that are the same colour as you!", topLeftx+5.5*boxSize, topLefty+2.5*boxSize);
+            ctx.fillText("Swap squares: MOUSE,    Move player: WASD or ARROWS", topLeftx+5.5*boxSize, topLefty+3*boxSize);
         }
         else{
             ctx.fillStyle = player_colour;
@@ -271,6 +286,16 @@
                 moveCount++;
                 isRight = false;
             }
+            else if (["darkred","darkgreen","darkblue"].includes(level[playeri][playerj+1]) ){
+                
+                var colourSave = level[playeri][playerj+1].replace('dark', '');
+                level[playeri][playerj+1] = player_colour;
+                player_colour = colourSave;
+
+                swap(playeri,playerj,playeri,playerj+1);
+                moveCount++;
+                isRight = false;
+            }
             else if (level[playeri][playerj+1] == "gold"){
                 moveCount++;
                 win();
@@ -279,6 +304,16 @@
         }
         if(isLeft && playerj-1 >= 0){ 
             if (level[playeri][playerj-1] == player_colour){
+                swap(playeri,playerj,playeri,playerj-1);
+                moveCount++;
+                isLeft = false;
+            }
+            else if (["darkred","darkgreen","darkblue"].includes(level[playeri][playerj-1]) ){
+                
+                var colourSave = level[playeri][playerj-1].replace('dark', '');
+                level[playeri][playerj-1] = player_colour;
+                player_colour = colourSave;
+
                 swap(playeri,playerj,playeri,playerj-1);
                 moveCount++;
                 isLeft = false;
@@ -295,6 +330,16 @@
                 moveCount++;
                 isDown = false;
             }
+            else if (["darkred","darkgreen","darkblue"].includes(level[playeri+1][playerj]) ){
+                
+                var colourSave = level[playeri+1][playerj].replace('dark', '');
+                level[playeri+1][playerj] = player_colour;
+                player_colour = colourSave;
+
+                swap(playeri,playerj,playeri+1,playerj);
+                moveCount++;
+                isDown = false;
+            }
             else if (level[playeri+1][playerj] == "gold"){
                 moveCount++;
                 win();
@@ -307,6 +352,16 @@
                 moveCount++;
                 isUp = false;
             }
+            else if (["darkred","darkgreen","darkblue"].includes(level[playeri-1][playerj]) ){
+                
+                var colourSave = level[playeri-1][playerj].replace('dark', '');
+                level[playeri-1][playerj] = player_colour;
+                player_colour = colourSave;
+
+                swap(playeri,playerj,playeri-1,playerj);
+                moveCount++;
+                isUp = false;
+            }
             else if (level[playeri-1][playerj] == "gold"){
                 moveCount++;
                 win();
@@ -314,6 +369,7 @@
             }
         }
         if(isRestart){
+            player_colour = startColour;
             loader = 0;
             moveCount = 0;
         }
