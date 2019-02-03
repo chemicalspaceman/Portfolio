@@ -28,7 +28,7 @@
     var topLefty;
     var boxNo = 11;
     var boxSize;
-    var levelCount = 1;
+    var levelCount = 4;
     var loader = 0;
     var player;
     var playeri; //i is rows
@@ -54,6 +54,16 @@
     var isDown = false;
     var isKeyDown = false;
     var isRestart = false;
+    var checkStop = false;
+
+    var delay = ( function() {
+        var timer = 0;
+        return function(callback, ms) {
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+
     //Register click event
     window.addEventListener("click", processClick, false);
     //check if a point is in a box which has x,y,width,height
@@ -264,25 +274,27 @@
             drawText();
 
         }
+       
         //check if any squares are swappable
-        if (!check_possible_swaps()){
-    
-            if(levelCount == 2){
-            swal("No more possible moves!", "It's ok, restart a level at any time by pressing 'R'","error");
-            }
-            else{
-            swal("No more possible moves", "Try again","error",{
-                button: "Restart!",
-            }); 
-            }
-            player_colour = startColour;
-            loader = 0;
-            moveCount = 0;
+        if (!check_possible_swaps() && !checkStop){
+            checkStop = true;
+
+            delay(function(){
+                // do stuff
+
+            
+                swal("No possible moves","Try again", {button: "Restart"})
+                .then((value) => {
+                    playerColour = startColour;
+                    loader = 0;
+                    moveCount = 0;
+                    checkStop = false;
+                
+                });
+            }, 1500 ); // end delay  
         }
-               
-                  
-             
-            //Movement logic
+
+        //Movement logic
         if(isKeyDown) movementLogic();
         window.requestAnimationFrame(draw); //this is apparently smoother than setInterval, not sure why
     }
