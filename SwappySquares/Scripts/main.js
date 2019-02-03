@@ -25,6 +25,7 @@
     var player_colour = 'red';
     var startColour = player_colour;
     var moveCount = 0;
+    var totalMoves = 0;
     //vars for selecting and swapping the boxes by clicking
     var boxDrawPositions = []; //positions where the boxes are drawn
     var selectedBoxi = "none";
@@ -70,13 +71,14 @@
                     //if there is already a box selected
                     //TODO add conditions on swap, do the two colours have to match etc?
                     else{
-                        if(level[i][j] == "red"|| level[i][j] == "blue"|| level[i][j] =="green"){
+                        if((level[i][j] == "red"|| level[i][j] == "blue"|| level[i][j] =="green") && level[i][j] !== (level[selectedBoxi][selectedBoxj])){
                             if((selectedBoxi == i && selectedBoxj == j - 1) ||
                                 (selectedBoxi == i - 1 && selectedBoxj == j) ||
                                 (selectedBoxi - 1 == i && selectedBoxj == j) ||
                                 (selectedBoxi == i && selectedBoxj - 1 == j )){
                                 swapColour(i,j,selectedBoxi,selectedBoxj,level[i][j],level[selectedBoxi][selectedBoxj]);
                                 moveCount++;
+                                totalMoves++;
                                 selectedBoxi = "none";
                                 selectedBoxj = "none";
                             }
@@ -135,12 +137,13 @@
         
     function win(){
         levelCount++;
-        loader = 0;
-        moveCount = 0;
+            loader = 0;
+            moveCount = 0;
 
-        //No clicks get carried over
-        selectedBoxi = "none";
-        selectedBoxj = "none";
+            //No clicks get carried over
+            selectedBoxi = "none";
+            selectedBoxj = "none";
+        
                             
         //Maybe add some graphics here
     }   
@@ -162,12 +165,14 @@
         ctx.font = "30px Arial";
         ctx.fillText("Level " + levelCount, topLeftx+10*boxSize, topLefty+boxSize);
 
-         //Draw level number
+         //Draw move numbers
         ctx.textAlign="left"; 
         ctx.textBaseline = "bottom";
         ctx.fillStyle = 'black';
-        ctx.font = "30px Arial";
+        ctx.font = "20px Arial";
         ctx.fillText("Moves: " + moveCount, topLeftx+1*boxSize, topLefty+boxSize);
+        ctx.textBaseline = "top";
+        ctx.fillText("Total: " + totalMoves, topLeftx+boxSize, topLefty+10.2*boxSize);
         
         //Draw transparent game background
         ctx.fillStyle = 'rgba(225,225,225,0.5)';
@@ -284,6 +289,7 @@
             if (level[playeri][playerj+1] == player_colour){
                 swap(playeri,playerj,playeri,playerj+1);
                 moveCount++;
+                totalMoves++;
                 isRight = false;
             }
             else if (["darkred","darkgreen","darkblue"].includes(level[playeri][playerj+1]) ){
@@ -294,10 +300,12 @@
 
                 swap(playeri,playerj,playeri,playerj+1);
                 moveCount++;
+                totalMoves++;
                 isRight = false;
             }
             else if (level[playeri][playerj+1] == "gold"){
                 moveCount++;
+                totalMoves++;
                 win();
                 isRight = false;
             }
@@ -306,6 +314,7 @@
             if (level[playeri][playerj-1] == player_colour){
                 swap(playeri,playerj,playeri,playerj-1);
                 moveCount++;
+                totalMoves++;
                 isLeft = false;
             }
             else if (["darkred","darkgreen","darkblue"].includes(level[playeri][playerj-1]) ){
@@ -316,10 +325,12 @@
 
                 swap(playeri,playerj,playeri,playerj-1);
                 moveCount++;
+                totalMoves++;
                 isLeft = false;
             }
             else if (level[playeri][playerj-1] == "gold"){
                 moveCount++;
+                totalMoves++;
                 win();
                 isLeft = false;
             }
@@ -328,6 +339,7 @@
             if (level[playeri+1][playerj] == player_colour){
                 swap(playeri,playerj,playeri+1,playerj);
                 moveCount++;
+                totalMoves++;
                 isDown = false;
             }
             else if (["darkred","darkgreen","darkblue"].includes(level[playeri+1][playerj]) ){
@@ -338,10 +350,12 @@
 
                 swap(playeri,playerj,playeri+1,playerj);
                 moveCount++;
+                totalMoves++;
                 isDown = false;
             }
             else if (level[playeri+1][playerj] == "gold"){
                 moveCount++;
+                totalMoves++;
                 win();
                 isDown = false;
             }
@@ -350,6 +364,7 @@
             if (level[playeri-1][playerj] == player_colour){
                 swap(playeri,playerj,playeri-1,playerj);
                 moveCount++;
+                totalMoves++;
                 isUp = false;
             }
             else if (["darkred","darkgreen","darkblue"].includes(level[playeri-1][playerj]) ){
@@ -360,10 +375,12 @@
 
                 swap(playeri,playerj,playeri-1,playerj);
                 moveCount++;
+                totalMoves++;
                 isUp = false;
             }
             else if (level[playeri-1][playerj] == "gold"){
                 moveCount++;
+                totalMoves++;
                 win();
                 isUp = false;
             }
