@@ -1,13 +1,32 @@
 //3
 var level1 = [
  	["black","black","black","black","black"],
- 	["black","player","green","gold","black"],
- 	["black","black","blue","black","black"],
+ 	["black","player","red","red","black"],
+ 	["black","black","black","red","black"],
+ 	["black","gold","red","red","black"],
  	["black","black","black","black","black"]
 ];
 
-//8
+//3
 var level2 = [
+ 	["black","black","black","black","black"],
+ 	["black","player","red","blue","black"],
+ 	["black","blue","red","red","black"],
+ 	["black","green","green","red","black"],
+ 	["black","gold","red","red","black"],
+ 	["black","black","black","black","black"]
+];
+
+//3
+var level3 = [
+ 	["black","black","black","black","black","black"],
+ 	["black","player","blue","blue","gold","black"],
+ 	["black","black","green","green","black","black"],
+ 	["black","black","black","black","black","black"]
+];
+
+//8
+var level4 = [
  	["black","black","black","black","black","black"],
  	["black","player","green","red","gold","black"],
  	["black","black","green","blue","black","black"],
@@ -15,7 +34,7 @@ var level2 = [
 ];
 
 //15
-var level3 = [
+var level5 = [
  	["black","black","black","black","black","black"],
  	["black","green","green","red","blue","black"],
  	["black","player","black","black","green","black"],
@@ -24,7 +43,7 @@ var level3 = [
 ];
 
 //10
-var level4 = [
+var level6 = [
 	["black","black","black","black","black","black","black"],
  	["black","black","black","black","green","black","black"],
  	["black","gold","red","green","green","black","black"],
@@ -35,7 +54,7 @@ var level4 = [
 
 
 //19
-var level5 = [
+var level7 = [
 	["black","black","black","black","black","black","black","black","black","black","black","black","black","black"],
 	["black","black","black","black","black","black","black","black","black","black","black","green","black","black"],
 	["black","player","green","blue","red","red","green","red","blue","green","green","red","gold","black"],
@@ -43,13 +62,13 @@ var level5 = [
 ];
 
 //2
-var level6 = [
+var level8 = [
  	["black","black","black","black","black","black","black"],
  	["black","player","red","darkblue","blue","gold","black"],
  	["black","black","black","black","black","black","black"]
 ];
 
-var level7 = [
+var level9 = [
 	["black","black","black","black","black"],
  	["black","black","gold","black","black"],
  	["black","black","red","black","black"],
@@ -58,7 +77,7 @@ var level7 = [
  	["black","black","black","black","black"]
 ];
 
-var level8 = [
+var level10 = [
 	["black","black","black","black","black"],
  	["black","black","blue","black","black"],
  	["black","player","darkred","red","black"],
@@ -69,7 +88,7 @@ var level8 = [
 
 
 //19
-var level9 = [
+var level11 = [
 	["black","black","black","black","black","black","black"],
  	["black","black","red","black","black","black","black"],
  	["black","black","darkgreen","green","black","black","black"],
@@ -78,10 +97,10 @@ var level9 = [
  	["black","black","black","black","black","black","black"]
 ];
 
-var level10 = [];
+var level12 = [];
 
 var levels = new Array();
 
-levels = [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10];
+levels = [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11];
 console.log(levels);
 
