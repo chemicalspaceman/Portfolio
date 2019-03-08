@@ -106,22 +106,22 @@ var level12 = [
 ];
 
 var level13 = [
-	["black","black","black","black","black","black","black","black","black","black","black"],
-	["black","black","black","black","black","black","black","white","black","black","silver"],
- 	["black","silver","black","black","red","darkblue","grey","blue","black","white","black"],
- 	["green","blue","green","player","red","black","black","black","blue","red","gold"],
+	["black","black","black","black","black","black","silver","black","silver","black","black"],
+	["black","black","black","black","black","black","black","white","black","black","black"],
+ 	["black","silver","black","black","red","darkblue","grey","blue","black","black","black"],
+ 	["green","blue","green","player","red","black","blue","black","blue","red","gold"],
  	["black","black","black","black","red","darkgreen","grey","green","black","red","black"],
- 	["black","black","black","black","black","black","black","white","black","blue","black"],
+ 	["black","black","black","black","black","black","blue","white","black","blue","black"],
  	["black","black","black","black","black","black","black","black","black","black","black"]
 ];
 
 var level14 = [
-["black","black","black","black","black","black","black","black","black","black","black"],
-["black","black","black","black","black","darkred","black","white","player","black","black"],
-["black","black","black","black","black","white","black","black","grey","black","black"],
-["black","black","black","black","black","black","blue","black","gold","black","black"],
-["black","black","black","black","black","darkblue","silver","black","black","black","black"]
-]
+	["black","black","black","black","black","black","black","black","black","black","black"],
+	["black","black","black","black","black","darkred","black","white","darkgreen","player","black"],
+	["black","black","black","black","black","white","black","black","grey","black","black"],
+	["black","black","black","black","black","black","blue","black","gold","black","black"],
+	["black","black","black","black","black","darkblue","silver","black","black","black","black"]
+];
 
 var level15 = [
 	["black","black","black","black","black","black","black","black","black","black","black"],
