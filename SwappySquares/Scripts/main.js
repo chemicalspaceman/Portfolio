@@ -1,7 +1,10 @@
 //AudioFiles
 var audio = new Audio('Audio/menuAudio.mp3');
-
 var swapAudio = new Audio('Audio/swapAudio.wav')
+var whiteAudio = new Audio('Audio/whiteAudio.wav')
+var goalAudio = new Audio('Audio/goalAudio.wav')
+var keyAudio = new Audio('Audio/keyAudio.wav')
+var lockAudio = new Audio('Audio/lockAudio.wav')
 
 var moveAudio = new Array()
 moveAudio[0] = new Audio("Audio/moveAudio1.wav");
@@ -49,6 +52,8 @@ var player_colour = 'red';
 var startColour = player_colour;
 var moveCount = 0;
 var totalMoves = 0;
+var keys = 0;
+var keySave = 0;
 //vars for selecting and swapping the boxes by clicking
 var boxDrawPositions = []; //positions where the boxes are drawn
 var selectedBoxi = "none";
@@ -172,6 +177,7 @@ function win(){
     levelCount++;
         loader = 0;
         moveCount = 0;
+        keySave = keys;
 
         //No clicks get carried over
         selectedBoxi = "none";
@@ -183,15 +189,6 @@ function win(){
                 
 // Draw game.                 
 function draw() {
-
-   // audio.addEventListener('ended', function() {
-   //     this.currentTime = 0;
-   //     this.play();
-    //}, false);
-    //audio.play();
-    //audio.volume = 0.5;
-
-
     if(loader==0){
         level_check();
         loader = 1;
@@ -200,7 +197,7 @@ function draw() {
     ctx.drawImage(bgImage, topLeftx, topLefty, squareSize, squareSize);
     //Draw swappy squares
     ctx.drawImage(ssImage, topLeftx+(boxNo/2*boxSize)-(boxSize*3/2), topLefty, boxSize*3, boxSize);
-    //Draw level number
+    //Draw level number 
     ctx.textAlign="right"; 
     ctx.textBaseline = "bottom";
     ctx.fillStyle = 'black';
@@ -215,6 +212,13 @@ function draw() {
     ctx.fillText("Moves: " + moveCount, topLeftx+1*boxSize, topLefty+boxSize);
     ctx.textBaseline = "top";
     ctx.fillText("Total: " + totalMoves, topLeftx+boxSize, topLefty+10.2*boxSize);
+
+    //draw keys
+    ctx.textAlign="right";
+    ctx.textBaseline = "top";
+    ctx.fillStyle = 'gold';
+    ctx.font = "20px Arial";
+    ctx.fillText("Keys: " + keys, topLeftx+10*boxSize, topLefty+10.2*boxSize);
     
     //Draw transparent game background
     ctx.fillStyle = 'black';
@@ -264,6 +268,24 @@ function draw() {
                     ctx.fillText("GOAL", position_x+0.5*boxSize, position_y+0.5*boxSize);
                 }
 
+                //writting on key box
+                if (level[i][j] == "silver"){
+                    ctx.fillStyle = 'black';
+                    ctx.textAlign="center"; 
+                    ctx.textBaseline = "middle";
+                    ctx.font = "15px Arial";
+                    ctx.fillText("KEY", position_x+0.5*boxSize, position_y+0.5*boxSize);
+                }
+
+                //writting on lock box
+                if (level[i][j] == "grey"){
+                    ctx.fillStyle = 'black';
+                    ctx.textAlign="center"; 
+                    ctx.textBaseline = "middle";
+                    ctx.font = "15px Arial";
+                    ctx.fillText("LOCK", position_x+0.5*boxSize, position_y+0.5*boxSize);
+                }
+
                 if (["darkred","darkgreen","darkblue"].includes(level[i][j])){
             
                     ctx.fillStyle = level[i][j].replace('dark', '');
@@ -305,10 +327,13 @@ function draw() {
         
             swal("No possible moves","Try again", {button: "Restart"})
             .then((value) => {
+                keys = keySave;
                 player_colour = startColour;
                 loader = 0;
                 moveCount = 0;
                 checkStop = false;
+                selectedBoxi = "none";
+                selectedBoxj = "none";
             });
         }, 1500 ); // end delay  
     }
@@ -369,6 +394,9 @@ function movementLogic(){
     }
 
     if(isRestart){
+        selectedBoxi = "none";
+        selectedBoxj = "none";
+        keys = keySave;
         player_colour = startColour;
         loader = 0;
         moveCount = 0;
@@ -405,12 +433,29 @@ function try_moving(i,j, di, dj){
         level[i+di][j+dj-1] = player_colour;
         moveCount++;
         totalMoves++;
-
+        whiteAudio.play();
+    }
+    else if(level[i+di][j+dj] == "silver"){
+        level[i+di][j+dj] = player_colour;
+        keys++;
+        swap(i,j,i+di,j+dj);
+        moveCount++;
+        totalMoves++;
+        keyAudio.play()
+    }
+    else if(level[i+di][j+dj] == "grey" && keys > 0){
+        level[i+di][j+dj] = player_colour;
+        swap(i,j,i+di,j+dj);
+        keys--;
+        moveCount++;
+        totalMoves++;
+        lockAudio.play()
     }
     //if you are moving to the goal
     else if (level[i+di][j+dj] == "gold"){
         moveCount++;
         totalMoves++;
+        goalAudio.play()
         win();
     }
 }
@@ -432,7 +477,7 @@ function check_possible_swaps(){
         }   
     }
 
-    var other_colours = ["darkred","darkgreen","darkblue","gold","white"];
+    var other_colours = ["darkred","darkgreen","darkblue","gold","white","silver","grey"];
     var around_player = [level[playeri+1][playerj],level[playeri-1][playerj],level[playeri][playerj+1],level[playeri][playerj-1]];
     if(around_player.includes(player_colour) || around_player.some(el => other_colours.includes(el))){
             return true;
