@@ -97,10 +97,17 @@ var level11 = [
  	["black","black","black","black","black","black","black"]
 ];
 
-var level12 = [];
+var level12 = [
+	["black","black","black","black","black","black","black","black"],
+	["black","black","black","black","black","darkred","green","blue"],
+ 	["black","black","black","darkgreen","white","black","black","white"],
+ 	["player","blue","white","black","black","black","black","black"],
+ 	["black","black","black","black","black","black","black","gold"],
+ 
+
+];
 
 var levels = new Array();
 
-levels = [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11];
+levels = [level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11,level12];
 console.log(levels);
-
