@@ -40,7 +40,7 @@ var topLeftx;
 var topLefty;
 var boxNo = 11;
 var boxSize;
-var levelCount = 11;
+var levelCount = 1;
 var loader = 0;
 var player;
 var playeri; //i is rows
